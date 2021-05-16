@@ -14,12 +14,13 @@ public class MainController {
 
     @PostMapping(path ="/add")
     public @ResponseBody
-    String addNewUser(@RequestParam String name, @RequestParam String email) {
+    String addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String tel) {
         User n = new User();
         n.setName(name);
         n.setEmail(email);
+        n.setTel(tel);
         userRepository.save(n);
-        return "Saved...";
+        return "Saved...\n";
     }
 
     @GetMapping(path = "/all")
