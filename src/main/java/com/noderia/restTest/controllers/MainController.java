@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
-@RequestMapping(path = "/demo")
+@RequestMapping(path = "/api")
 public class MainController {
     @Autowired
     private UserRepository userRepository;
@@ -28,5 +30,12 @@ public class MainController {
     Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    @GetMapping(path = "/one")
+    public @ResponseBody
+    Optional<User> getOneUser(@RequestParam Integer id) {
+        return userRepository.findById(id);
+    }
+
 
 }
